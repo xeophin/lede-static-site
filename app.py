@@ -7,33 +7,34 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://km@localhost/esc'
 db = SQLAlchemy(app)
 
 
-# class Finalist(db.Model):
-#   __tablename__ = 'finalists'
-#   __table_args__ = {
-#     'autoload': True,
-#     'autoload_with': db.engine
-#   }
-#   id = db.Column(db.String, primary_key=True)
-
-
-class Contest(db.Model):
-  __tablename__ = 'contests'
+class Contests(db.Model):
   __table_args__ = {
     'autoload': True,
     'autoload_with': db.engine
   }
   id = db.Column(db.String, primary_key=True)
+  
+class Finalists(db.Model):
+  __table_args__ = {
+    'autoload': True,
+    'autoload_with': db.engine
+  }
+  id = db.Column(db.String, primary_key=True)
+  contest_id = db.Column(db.String, db.ForeignKey('contests.id'))
+
+
+
 
 
 @app.route("/")
 def hello():
-  contests = Contest.query.all()
+  contests = Contests.query.all()
   return render_template('list.html', contests=contests)
 
 
 @app.route('/contests/')
-def schools():
-  contests = Contest.query.all()
+def contests():
+  contests = Contests.query.all()
   return render_template('list.html', contests=contests)
 
 
@@ -43,10 +44,12 @@ def schools():
 #   return render_template('list.html', schools=schools)
 # 
 
-# @app.route('/school/<dbn>/')
-# def school(dbn):
-#   school = School.query.filter_by(dbn=dbn).first()
-#   return render_template('show.html', school=school)
+@app.route('/contest/<id>/')
+def contest(id):
+  contest = Contests.query.filter_by(id=id).first()
+  finalists = Finalists.query.filter_by(contest_id=id).order_by(
+    Finalists.ranking).all()
+  return render_template('show.html', contest=contest, finalists=finalists)
 
 
 if __name__ == '__main__':

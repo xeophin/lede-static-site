@@ -2,30 +2,36 @@
 
 {% block content %}
 
-  <div class='ui breadcrumb'>
-    <a class='active section' href='/schools'>List</a>
+  <div class='ui vertical padded segment'>
+    <div class='ui container'>
+      <h1 class='ui large breadcrumb'>
+        <a class='active section' href='/'>
+          <i class='home icon'></i>
+          Eurovision Song Contests</a>
+      </h1>
+    </div>
   </div>
+  <div class='ui very padded vertical segment'>
+    <div class='ui container'>
+      <div class='ui four doubling cards '>
 
-  <div class='ui divider'></div>
-
-  <h1 class='ui header'>Contests</h1>
-  <div class='ui four doubling cards '>
-
-    {% for contest in contests %}
-        <a class='ui card' 
-
-        > <div class='image'><img src='{{contest.img_src}}'
-            alt=''
-           ></div>
+        {% for contest in contests %} <a class='ui card'
+            href='{{ url_for("contest", id=contest.id) }}'
+        >
+          <div class='image'><img src='{{ contest.img_src }}'
+              alt=''
+          ></div>
           <div class='content'>
             <div class='ui header'>
-              {{contest.year}}
+              {{ contest.year }}
               <div class='sub header'>{{ contest.name }}</div>
             </div>
           </div>
-          </a>
-      
-    {% endfor %}
+        </a>
 
+        {% endfor %}
+
+      </div>
+    </div>
   </div>
 {% endblock %}

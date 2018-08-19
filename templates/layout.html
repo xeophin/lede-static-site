@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
   <meta charset='UTF-8'>
-  <title>Title</title>
+  <title>Eurovision Song Contests</title>
   <link rel='stylesheet'
       href='https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css'
       integrity='sha256-ncjDAd2/rm/vaNTqp7Kk96MfSeHACtbiDU9NWKqNuCI='
@@ -12,24 +12,8 @@
       crossorigin='anonymous'></script>
 </head>
 <body>
-<header class='ui blue top attached large menu'>
-  <div class='ui container'>
-    <div class='header item'>Schools and Stuff</div>
-    <a href='/schools' class='item'>School List</a>
-    <div class='right menu'>
-      <form class='ui right aligned category search item' action='/search'>
-        <div class='ui transparent icon input'>
-          <input class='prompt' type='search' placeholder='Search ...'> <i class='search link icon'></i>
-        </div>
-        <div class='results'></div>
-      </form>
-    </div>
-  </div>
-</header>
-<main class='ui vertical very padded segment'>
-  <div class='ui text container'>
+<main>
     {% block content %}{% endblock %}
-  </div>
 </main>
 <footer class='ui vertical inverted blue very padded segment'>
   <div class='ui container'>
