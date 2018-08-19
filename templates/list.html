@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <div class='ui breadcrumb'>
+    <a class='active section' href='/schools'>List</a>
+  </div>
+
+  <div class='ui divider'></div>
+
+  <h1 class='ui header'>Contests</h1>
+  <div class='ui four doubling cards '>
+
+    {% for contest in contests %}
+        <a class='ui card' 
+
+        > <div class='image'><img src='{{contest.img_src}}'
+            alt=''
+           ></div>
+          <div class='content'>
+            <div class='ui header'>
+              {{contest.year}}
+              <div class='sub header'>{{ contest.name }}</div>
+            </div>
+          </div>
+          </a>
+      
+    {% endfor %}
+
+  </div>
+{% endblock %}
