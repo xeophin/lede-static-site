@@ -27,13 +27,7 @@ class Finalists(db.Model):
 
 
 @app.route("/")
-def hello():
-  contests = Contests.query.all()
-  return render_template('list.html', contests=contests)
-
-
-@app.route('/contests/')
-def contests():
+def index():
   contests = Contests.query.all()
   return render_template('list.html', contests=contests)
 
